@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded",()=>{
+    
     const display = document.getElementById("calc-display");
     const mem_display = document.getElementById("memory");
 
@@ -15,7 +16,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     //A funcion to evaluate the expressions 
     function calculate_result () {
+
+        // Convert the symbols to supported operators
         let convertedval = currentval.replaceAll("×","*").replaceAll("÷","/").replaceAll("mod","%");
+        
         try {
             let result = eval(convertedval);
             if (result == Infinity){
@@ -46,6 +50,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                 currentval = "";
                 display.value = currentval;
             }
+            // Over-rides with current operator if multiple operators inputed
             else if ((value == "+" || value == "-" || value == "×"|| value == "÷") && 
             (currentval.slice(-1)== "+" || currentval.slice(-1)== "-" || currentval.slice(-1)== "×" || currentval.slice(-1)== "÷")){
                 currentval = currentval.slice(0,-1);
@@ -53,6 +58,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                 display.value = currentval;
             }
             else if (value == "⌫"){
+                // To delete the whole word 'mod' in single click
                 if(currentval.slice(-3) == "mod"){
                     currentval = currentval.slice(0,-3);
                     display.value = currentval;
@@ -61,24 +67,27 @@ document.addEventListener("DOMContentLoaded",()=>{
                     display.value = currentval;
                 }
             } 
+
+            // To evaluate square
             else if (value == "χ2"){
                 try {
                     if(isNaN(currentval)){
                         throw new error;
                     }
-                    var result = eval(currentval * currentval);
+                    let result = eval(currentval * currentval);
                     currentval = result.toString(); 
                     display.value = currentval;
                 } catch (e) {
                     display.value = "Invalid Expression";
                 }
-                
+              
+            // To evaluate the inverse of a result
             }else if (value == "1/x"){
                 try {
                     if(isNaN(currentval)){
                         throw new error;
                     }
-                    var result = eval(1/currentval);
+                    let result = eval(1/currentval);
                     if (result == Infinity){
                         display.value = "Cannot divide by 0";}
                         else {
@@ -91,20 +100,25 @@ document.addEventListener("DOMContentLoaded",()=>{
                 }
                 
             }
+
+            // Memory store function
             else if (value == "MS"){
                 if(currentval != ""){
                     memory = eval(currentval);
                     mem_display.innerText = memory;   
                 }   
             }
+            // Memory clear function
             else if (value == "MC") {
                 memory = "";
                 mem_display.innerText = memory;
             }
+            // Memory restore
             else if (value == "MR") {
                 currentval = memory.toString();
                 display.value = currentval;
             }
+            // Add to memory
             else if (value == "M+"){
                 if (memory !== "") {
                     memory = parseFloat(memory) + parseFloat(currentval);
@@ -112,16 +126,19 @@ document.addEventListener("DOMContentLoaded",()=>{
                 }
                 
             }
+            // Subtract from memory
             else if (value == "M-"){
                 if (memory !== "") {
                     memory = parseFloat(memory) - parseFloat(currentval);
                     mem_display.innerText = memory;
                 }
             }
+            // Evaluates the expression by calling calculate_result
             else if (value == "="){
                 calculate_result();
             }
-             
+            
+            // Appends the next inputed value to the currentval
             else {
                 currentval = currentval + value; 
                 display.value = currentval;
