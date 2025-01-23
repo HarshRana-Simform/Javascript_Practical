@@ -24,14 +24,17 @@
       <h1>Scientific Calculator</h1>
       <div class="row">
         <div class="col-12 offset-lg-4 col-lg-4">
-          <div class="card bg-color border-0 rounded-0">
+          <div class="card bg-color border rounded-0">
             <div class="card-body">
               <div class="input-group input-group-lg">
+                <div id="mem-display" class="row text-start">
+                  Memory:<span id="memory"></span>
+                </div>
                 <input
                   id="calc-display"
                   readonly
                   type="text"
-                  class="form-control bg-color rem-rad border-0"
+                  class="form-control bg-color rem-rad border-0 text-end"
                   aria-label="Sizing example input"
                   aria-describedby="inputGroup-sizing-lg"
                 />
@@ -39,34 +42,41 @@
               <div class="row mt-2 gx-1">
                 <div class="col">
                   <button
-                    disabled
                     type="button"
-                    class="btn btn-light w-100 out-section"
+                    class="btn btn-light w-100 out-section accept"
                   >
                     MC
                   </button>
                 </div>
                 <div class="col">
                   <button
-                    disabled
                     type="button"
-                    class="btn btn-light w-100 out-section"
+                    class="btn btn-light w-100 out-section accept"
                   >
                     MR
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 out-section">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 out-section accept"
+                  >
                     M+
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 out-section">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 out-section accept"
+                  >
                     M-
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 out-section">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 out-section accept"
+                  >
                     MS
                   </button>
                 </div>
@@ -107,24 +117,36 @@
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 outer-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 outer-btn accept"
+                  >
                     C
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 outer-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 outer-btn accept"
+                  >
                     ⌫
                   </button>
                 </div>
               </div>
               <div class="row mt-1 gx-1">
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 outer-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 outer-btn accept"
+                  >
                     χ<sup>2</sup>
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 outer-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 outer-btn accept"
+                  >
                     1/x
                   </button>
                 </div>
@@ -139,7 +161,10 @@
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 outer-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 outer-btn accept"
+                  >
                     mod
                   </button>
                 </div>
@@ -151,12 +176,18 @@
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 outer-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 outer-btn accept"
+                  >
                     (
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 outer-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 outer-btn accept"
+                  >
                     )
                   </button>
                 </div>
@@ -166,7 +197,10 @@
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 outer-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 outer-btn accept"
+                  >
                     ÷
                   </button>
                 </div>
@@ -178,22 +212,34 @@
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 inner-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 inner-btn accept"
+                  >
                     7
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 inner-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 inner-btn accept"
+                  >
                     8
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 inner-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 inner-btn accept"
+                  >
                     9
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 outer-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 outer-btn accept"
+                  >
                     ×
                   </button>
                 </div>
@@ -205,22 +251,34 @@
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 inner-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 inner-btn accept"
+                  >
                     4
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 inner-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 inner-btn accept"
+                  >
                     5
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 inner-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 inner-btn accept"
+                  >
                     6
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 outer-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 outer-btn accept"
+                  >
                     -
                   </button>
                 </div>
@@ -232,22 +290,34 @@
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 inner-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 inner-btn accept"
+                  >
                     1
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 inner-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 inner-btn accept"
+                  >
                     2
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 inner-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 inner-btn accept"
+                  >
                     3
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 outer-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 outer-btn accept"
+                  >
                     +
                   </button>
                 </div>
@@ -264,12 +334,18 @@
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 inner-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 inner-btn accept"
+                  >
                     0
                   </button>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-light w-100 inner-btn">
+                  <button
+                    type="button"
+                    class="btn btn-light w-100 inner-btn accept"
+                  >
                     .
                   </button>
                 </div>
@@ -277,7 +353,7 @@
                   <button
                     type="button"
                     id="eql-btn"
-                    class="btn btn-light w-100 outer-btn"
+                    class="btn btn-light w-100 outer-btn accept"
                   >
                     =
                   </button>

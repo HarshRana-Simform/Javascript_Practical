@@ -7,6 +7,12 @@
     border-radius:0%;
     outline: none;
 }
+
+#mem-display{
+    font-weight: 300;
+    font-size: small;
+}
+
 .out-section {
     background-color: #F5F4F4;
     border-radius: 0;
