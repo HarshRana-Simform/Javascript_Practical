@@ -17,8 +17,11 @@ document.addEventListener("DOMContentLoaded",()=>{
     //A funcion to evaluate the expressions 
     function calculate_result () {
 
-        // Convert the symbols to supported operators
-        let convertedval = currentval.replaceAll("×","*").replaceAll("÷","/").replaceAll("mod","%");
+        // Convert the symbols to supported operators and functions in javascript
+        let convertedval = currentval.replaceAll("×","*").replaceAll("÷","/")
+        .replaceAll("mod","%").replace("sqrt(","Math.sqrt(")
+        .replaceAll("π","*3.1415").replaceAll("e","*2.71828")
+        .replaceAll("log(","Math.log10(").replaceAll("ln(","Math.log(");
         
         try {
             let result = eval(convertedval);
@@ -133,15 +136,35 @@ document.addEventListener("DOMContentLoaded",()=>{
                     mem_display.innerText = memory;
                 }
             }
+            
+            // Adding the square root function in place of symbol
+            else if(value == "2√x"){
+                currentval = currentval + "sqrt(";
+                display.value = currentval;
+            }
+
+            // Adding the log with base 10 to input string
+            else if(value == "log"){
+                currentval = currentval + "log(";
+                display.value = currentval;
+            }
+
+            // Adding log with base e natural log to input string
+            else if(value == "ln"){
+                currentval = currentval + "ln(";
+                display.value = currentval;
+            }
+
             // Evaluates the expression by calling calculate_result
             else if (value == "="){
                 calculate_result();
             }
-            
+                      
             // Appends the next inputed value to the currentval
-            else {
-                currentval = currentval + value; 
-                display.value = currentval;
+            else { 
+                    currentval = currentval + value; 
+                    display.value = currentval;
+                
             }
            
         })
