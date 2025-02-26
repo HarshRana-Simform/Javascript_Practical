@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded",()=>{
+    
     const display = document.getElementById("calc-display");
     const mem_display = document.getElementById("memory");
 
@@ -15,7 +16,13 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     //A funcion to evaluate the expressions 
     function calculate_result () {
-        let convertedval = currentval.replaceAll("×","*").replaceAll("÷","/").replaceAll("mod","%");
+
+        // Convert the symbols to supported operators and functions in javascript
+        let convertedval = currentval.replaceAll("×","*").replaceAll("÷","/")
+        .replaceAll("mod","%").replace("sqrt(","Math.sqrt(")
+        .replaceAll("π","*3.1415").replaceAll("e","*2.71828")
+        .replaceAll("log(","Math.log10(").replaceAll("ln(","Math.log(");
+        
         try {
             let result = eval(convertedval);
             if (result == Infinity){
@@ -46,6 +53,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                 currentval = "";
                 display.value = currentval;
             }
+            // Over-rides with current operator if multiple operators inputed
             else if ((value == "+" || value == "-" || value == "×"|| value == "÷") && 
             (currentval.slice(-1)== "+" || currentval.slice(-1)== "-" || currentval.slice(-1)== "×" || currentval.slice(-1)== "÷")){
                 currentval = currentval.slice(0,-1);
@@ -53,6 +61,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                 display.value = currentval;
             }
             else if (value == "⌫"){
+                // To delete the whole word 'mod' in single click
                 if(currentval.slice(-3) == "mod"){
                     currentval = currentval.slice(0,-3);
                     display.value = currentval;
@@ -61,24 +70,27 @@ document.addEventListener("DOMContentLoaded",()=>{
                     display.value = currentval;
                 }
             } 
+
+            // To evaluate square
             else if (value == "χ2"){
                 try {
                     if(isNaN(currentval)){
                         throw new error;
                     }
-                    var result = eval(currentval * currentval);
+                    let result = eval(currentval * currentval);
                     currentval = result.toString(); 
                     display.value = currentval;
                 } catch (e) {
                     display.value = "Invalid Expression";
                 }
-                
+              
+            // To evaluate the inverse of a result
             }else if (value == "1/x"){
                 try {
                     if(isNaN(currentval)){
                         throw new error;
                     }
-                    var result = eval(1/currentval);
+                    let result = eval(1/currentval);
                     if (result == Infinity){
                         display.value = "Cannot divide by 0";}
                         else {
@@ -91,20 +103,25 @@ document.addEventListener("DOMContentLoaded",()=>{
                 }
                 
             }
+
+            // Memory store function
             else if (value == "MS"){
                 if(currentval != ""){
                     memory = eval(currentval);
                     mem_display.innerText = memory;   
                 }   
             }
+            // Memory clear function
             else if (value == "MC") {
                 memory = "";
                 mem_display.innerText = memory;
             }
+            // Memory restore
             else if (value == "MR") {
                 currentval = memory.toString();
                 display.value = currentval;
             }
+            // Add to memory
             else if (value == "M+"){
                 if (memory !== "") {
                     memory = parseFloat(memory) + parseFloat(currentval);
@@ -112,19 +129,42 @@ document.addEventListener("DOMContentLoaded",()=>{
                 }
                 
             }
+            // Subtract from memory
             else if (value == "M-"){
                 if (memory !== "") {
                     memory = parseFloat(memory) - parseFloat(currentval);
                     mem_display.innerText = memory;
                 }
             }
+            
+            // Adding the square root function in place of symbol
+            else if(value == "2√x"){
+                currentval = currentval + "sqrt(";
+                display.value = currentval;
+            }
+
+            // Adding the log with base 10 to input string
+            else if(value == "log"){
+                currentval = currentval + "log(";
+                display.value = currentval;
+            }
+
+            // Adding log with base e natural log to input string
+            else if(value == "ln"){
+                currentval = currentval + "ln(";
+                display.value = currentval;
+            }
+
+            // Evaluates the expression by calling calculate_result
             else if (value == "="){
                 calculate_result();
             }
-             
-            else {
-                currentval = currentval + value; 
-                display.value = currentval;
+                      
+            // Appends the next inputed value to the currentval
+            else { 
+                    currentval = currentval + value; 
+                    display.value = currentval;
+                
             }
            
         })
